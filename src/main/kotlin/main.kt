@@ -1,3 +1,25 @@
 fun main(args: Array<String>) {
-    println("Hello World!")
+
+    val parking = Parking(mutableSetOf())
+
+    val defaultPlate = "AA111A"
+    var i :Int = 0
+
+    val car = Vehicle("AB111AA",VehicleType.CAR) //MISMA PATENTE
+    parking.addVehicle(car) //devuelve false porque ya existe en el parking
+
+    while (i < 5) {
+        val car2 = Vehicle("AB111A" + ('A' + i),VehicleType.CAR,"DISCOUNT_CARD_001") //La primera vez devuelve FALSE por estar repetido
+        val moto = Vehicle("AB111B" + ('A' + i),VehicleType.BIKE)
+        val minibus = Vehicle("CC111C" + ('A' + i),VehicleType.MINIBUS)
+        val bus = Vehicle("DD111D" + ('A' + i),VehicleType.BUS,"DISCOUNT_CARD_002")
+
+        parking.addVehicle(car2)
+        parking.addVehicle(bus)
+        parking.addVehicle(moto)
+        parking.addVehicle(minibus)
+
+        i++
+    }
+
 }
