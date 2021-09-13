@@ -2,7 +2,7 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 
 open class Parkable {
-    val checkInTime: Calendar = Calendar.getInstance()
+    private val checkInTime: Calendar = Calendar.getInstance()
 
     val parkedTime: Long
         get() = (Calendar.getInstance().timeInMillis - checkInTime.timeInMillis) / TimeUnit.MINUTES.toMillis(

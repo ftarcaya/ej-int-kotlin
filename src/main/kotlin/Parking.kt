@@ -24,6 +24,7 @@ data class Parking(val vehicles: MutableSet<Vehicle>) {
     fun checkOutVehicle(plate: String, onSuccess: (Int) -> Unit, onError: () -> Unit): Boolean {
         var vehicleRemoved: Vehicle? = null
 
+        //I search for the vehicle in the MutableList, if it doesn't exists I return null
         vehicles.forEach {
             if (it.plate == plate) {
                 vehicleRemoved = it
@@ -32,14 +33,18 @@ data class Parking(val vehicles: MutableSet<Vehicle>) {
         }
 
         if (vehicleRemoved != null) {
-            //Calculo de la tarifa
+            //Fee calculation
             var fee: Int = vehicleRemoved!!.calculateFee(vehicleRemoved!!.vehicleType,
                 vehicleRemoved!!.parkedTime.toInt(), vehicleRemoved!!.discountCard?.let { true } ?: false
             )
 
+            //Save it on $earnings
+            earnings = Pair(earnings.first + 1, earnings.second + fee)
+
+            //Show the fee
             onSuccess(fee)
 
-            //Remover vehiculo
+            //Remove vehicle
             vehicles.remove(vehicleRemoved)
 
             return true
@@ -50,8 +55,6 @@ data class Parking(val vehicles: MutableSet<Vehicle>) {
     }
 
     fun onSuccess(fee: Int) {
-        earnings = Pair(earnings.first + 1, earnings.second + fee)
-
         println("Your fee is $$fee. Come back soon.")
     }
 

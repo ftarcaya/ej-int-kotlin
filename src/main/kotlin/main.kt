@@ -27,5 +27,6 @@ fun main(args: Array<String>) {
     parking.checkOutVehicle("AB111AA", parking::onSuccess, parking::onError) //sin descuento
     parking.checkOutVehicle("AB111AB", parking::onSuccess, parking::onError) //con descuento
 
+    parking.showEarnings()
 
 }
