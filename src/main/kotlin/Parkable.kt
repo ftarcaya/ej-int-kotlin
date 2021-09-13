@@ -17,7 +17,7 @@ open class Parkable {
             extraTime = (parkedTime as Int) - 120
         }
 
-        val discount: Float = if (discountCard) 0.75F else 1F
+        val discount: Float = if (discountCard) 0.85F else 1F
 
         return ((vehicleType.cost + (extraTime / 15) * 5) * discount).toInt()
     }
