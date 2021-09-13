@@ -68,7 +68,7 @@ data class Parking(val vehicles: MutableSet<Vehicle>) {
         println("LISTA DE VEHICULOS")
 
         vehicles.forEach {
-            println(it.toString())
+            println(it.plate)
         }
 
         println("------------------")
