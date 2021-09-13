@@ -2,10 +2,12 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 
 open class Parkable {
-    val checkInTime : Calendar = Calendar.getInstance()
+    val checkInTime: Calendar = Calendar.getInstance()
 
-    val parkedTime : Long
-        get() = (Calendar.getInstance().timeInMillis + TimeUnit.MINUTES.toMillis(120) - checkInTime.timeInMillis) / TimeUnit.MINUTES.toMillis(1)
+    val parkedTime: Long
+        get() = (Calendar.getInstance().timeInMillis - checkInTime.timeInMillis) / TimeUnit.MINUTES.toMillis(
+            1
+        )
 
     fun calculateFee(vehicleType: VehicleType, parkedTime: Int, discountCard: Boolean): Int {
 

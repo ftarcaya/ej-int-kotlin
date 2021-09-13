@@ -1,9 +1,9 @@
 data class Parking(val vehicles: MutableSet<Vehicle>) {
     private val maxSpace = 20
-    var earnings = Pair(0,0)
+    var earnings = Pair(0, 0)
 
     //Adds vehicles to the list checking maxSpace and if it already exists
-    fun addVehicle(vehicle: Vehicle) : Boolean{
+    fun addVehicle(vehicle: Vehicle): Boolean {
         if (vehicles.size >= maxSpace) {
             println("Sorry, the check-in failed")
             println("(Max occupancy reached)")
@@ -21,20 +21,21 @@ data class Parking(val vehicles: MutableSet<Vehicle>) {
     }
 
     //if the plate exists, calculates the fee and calls onSuccess function, else calls onError function
-    fun checkOutVehicle(plate : String, onSuccess : (Int) -> Unit, onError : () -> Unit) : Boolean{
-        var vehicleRemoved : Vehicle ? = null
+    fun checkOutVehicle(plate: String, onSuccess: (Int) -> Unit, onError: () -> Unit): Boolean {
+        var vehicleRemoved: Vehicle? = null
 
         vehicles.forEach {
-            if( it.plate == plate) {
+            if (it.plate == plate) {
                 vehicleRemoved = it
 
             }
         }
 
-        if(vehicleRemoved != null) {
+        if (vehicleRemoved != null) {
             //Calculo de la tarifa
-            var fee : Int = vehicleRemoved!!.calculateFee(vehicleRemoved!!.vehicleType,
-                vehicleRemoved!!.parkedTime.toInt(), vehicleRemoved!!.discountCard?.let { true }?: false )
+            var fee: Int = vehicleRemoved!!.calculateFee(vehicleRemoved!!.vehicleType,
+                vehicleRemoved!!.parkedTime.toInt(), vehicleRemoved!!.discountCard?.let { true } ?: false
+            )
 
             onSuccess(fee)
 
@@ -48,8 +49,8 @@ data class Parking(val vehicles: MutableSet<Vehicle>) {
         return false
     }
 
-    fun onSuccess(fee : Int) {
-        earnings = Pair(earnings.first + 1,earnings.second + fee)
+    fun onSuccess(fee: Int) {
+        earnings = Pair(earnings.first + 1, earnings.second + fee)
 
         println("Your fee is $$fee. Come back soon.")
     }
