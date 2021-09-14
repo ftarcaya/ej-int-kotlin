@@ -8,7 +8,7 @@ fun main(args: Array<String>) {
     val car = Vehicle("AB111AA", VehicleType.CAR)
     parking.addVehicle(car)
 
-    while (i < 5) {
+    while (i < 6) {
         val car2 = Vehicle("AB111A" + ('A' + i), VehicleType.CAR, "DISCOUNT_CARD_001") //La primera vez devuelve FALSE por estar repetido
         val moto = Vehicle("AB111B" + ('A' + i), VehicleType.BIKE)
         val minibus = Vehicle("CC111C" + ('A' + i), VehicleType.MINIBUS)
@@ -26,6 +26,8 @@ fun main(args: Array<String>) {
 
     parking.checkOutVehicle("AB111AA", parking::onSuccess, parking::onError) //sin descuento
     parking.checkOutVehicle("AB111AB", parking::onSuccess, parking::onError) //con descuento
+    parking.checkOutVehicle("CC111CA", parking::onSuccess, parking::onError) //sin descuento
+    parking.checkOutVehicle("DD111DA", parking::onSuccess, parking::onError) //con descuento
 
     parking.showEarnings()
 
